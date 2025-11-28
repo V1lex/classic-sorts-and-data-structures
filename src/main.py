@@ -114,7 +114,7 @@ def benchmark_lines(arrays: dict[str, list[object]], runs: int) -> list[str]:
         for algo_name, algo in ALGOS.items():
             total = 0.0
             try:
-                for _ in range(runs):
+                for run_index in range(runs):
                     total += timeit_once(algo, array.copy())
                 totals_per_algo[algo_name] += total
                 counts_per_algo[algo_name] += 1

@@ -87,12 +87,12 @@ def counting_sort(
     min_value = min(key_value for key_value, original_value in keyed_values)
     max_value = max(key_value for key_value, original_value in keyed_values)
     range_size = max_value - min_value + 1
-    counts: list[list[T]] = [[] for _ in range(range_size)]
+    counts = [[] for bucket_index in range(range_size)]
 
     for key_value, original in keyed_values:
         counts[key_value - min_value].append(original)
 
-    result: list[T] = []
+    result = []
     for bucket in counts:
         result.extend(bucket)
     return result
@@ -134,7 +134,7 @@ def radix_sort(
     non_negative = [(key_value, value) for key_value, value in keyed_values if key_value >= 0]
     negative = [(-key_value, value) for key_value, value in keyed_values if key_value < 0]
 
-    sorted_non_negative: list[tuple[int, T]] = []
+    sorted_non_negative = []
     if non_negative:
         result_pairs = non_negative.copy()
         max_value = max(key_value for key_value, original_value in result_pairs)
@@ -148,7 +148,7 @@ def radix_sort(
             exponent *= base
         sorted_non_negative = result_pairs
 
-    sorted_negative: list[tuple[int, T]] = []
+    sorted_negative = []
     if negative:
         result_pairs = negative.copy()
         max_negative = max(key_value for key_value, original_value in result_pairs)
@@ -162,8 +162,8 @@ def radix_sort(
             exponent *= base
         sorted_negative = result_pairs
 
-    negative_part = [value for _, value in reversed(sorted_negative)]
-    non_negative_part = [value for _, value in sorted_non_negative]
+    negative_part = [value for key_value, value in reversed(sorted_negative)]
+    non_negative_part = [value for key_value, value in sorted_non_negative]
     return negative_part + non_negative_part
 
 
@@ -208,7 +208,7 @@ def bucket_sort(
         index = min(bucket_count - 1, int(norm * bucket_count))
         buckets_storage[index].append(original_value)
 
-    result: list[T] = []
+    result = []
     for bucket in buckets_storage:
         for i in range(1, len(bucket)):
             current_value = bucket[i]

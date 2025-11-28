@@ -36,7 +36,7 @@ def fibo(n: int) -> int:
     if n == 0:
         return 0
     previous, current = 0, 1
-    for _ in range(1, n):
+    for iteration in range(1, n):
         previous, current = current, previous + current
     return current
 
