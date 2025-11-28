@@ -17,6 +17,8 @@ def nearly_sorted(n: int, swaps: int, *, seed: int | None = None) -> list[int]:
     """
     Возвращает почти отсортированный массив: отсортированный список с ограниченным числом swap операций.
     """
+    if swaps > 0 and n < 2:
+        raise ValueError("Нельзя выполнить перестановки в массиве длиной меньше 2")
     rng = random.Random(seed)
     arr = list(range(n))
     for swap in range(swaps):
