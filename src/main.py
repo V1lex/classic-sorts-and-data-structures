@@ -67,7 +67,7 @@ def parse_numbers(tokens: list[str]) -> list[int | float]:
 
 def parse_ints(tokens: list[str]) -> list[int]:
     numbers = parse_numbers(tokens)
-    ints: list[int] = []
+    ints = []
     for number in numbers:
         if not isinstance(number, int):
             raise ValueError("Ожидались только целые числа.")
@@ -106,8 +106,8 @@ ALGOS = {
 
 def benchmark_lines(arrays: dict[str, list[object]], runs: int) -> list[str]:
     lines = [f"runs={runs}, единицы: секунды (суммарно)"]
-    totals_per_algo: dict[str, float] = {name: 0.0 for name in ALGOS}
-    counts_per_algo: dict[str, int] = {name: 0 for name in ALGOS}
+    totals_per_algo = {name: 0.0 for name in ALGOS}
+    counts_per_algo = {name: 0 for name in ALGOS}
     for name, array in arrays.items():
         lines.append("")
         lines.append(f"{name} (n={len(array)}):")
@@ -344,4 +344,4 @@ def benchmark_cmd(
 
 
 if __name__ == "__main__":
-    app()  # pragma: no cover
+    app()
