@@ -5,6 +5,8 @@ def rand_int_array(n: int, lo: int, hi: int, *, distinct: bool = False, seed: in
     """
     Генерирует массив случайных целых чисел.
     """
+    if n < 0:
+        raise ValueError("Длина массива должна быть неотрицательной")
     rng = random.Random(seed)
     if distinct:
         if hi - lo + 1 < n:
@@ -17,6 +19,10 @@ def nearly_sorted(n: int, swaps: int, *, seed: int | None = None) -> list[int]:
     """
     Возвращает почти отсортированный массив: отсортированный список с ограниченным числом swap операций.
     """
+    if n < 0:
+        raise ValueError("Длина массива должна быть неотрицательной")
+    if swaps < 0:
+        raise ValueError("Число перестановок не может быть отрицательным")
     if swaps > 0 and n < 2:
         raise ValueError("Нельзя выполнить перестановки в массиве длиной меньше 2")
     rng = random.Random(seed)
@@ -29,6 +35,8 @@ def nearly_sorted(n: int, swaps: int, *, seed: int | None = None) -> list[int]:
 
 def many_duplicates(n: int, k_unique: int = 5, *, seed: int | None = None) -> list[int]:
     """Генерация массива длины n с ограниченным числом уникальных значений."""
+    if n < 0:
+        raise ValueError("Длина массива должна быть неотрицательной")
     if k_unique <= 0:
         raise ValueError("Ошибка: k_unique должно быть положительным")
     rng = random.Random(seed)
@@ -38,10 +46,14 @@ def many_duplicates(n: int, k_unique: int = 5, *, seed: int | None = None) -> li
 
 def reverse_sorted(n: int) -> list[int]:
     """Массив длины n, отсортированный по убыванию."""
+    if n < 0:
+        raise ValueError("Длина массива должна быть неотрицательной")
     return list(range(n, 0, -1))
 
 
 def rand_float_array(n: int, lo: float = 0.0, hi: float = 1.0, *, seed: int | None = None) -> list[float]:
     """Генерация массива случайных чисел с плавающей точкой."""
+    if n < 0:
+        raise ValueError("Длина массива должна быть неотрицательной")
     rng = random.Random(seed)
     return [rng.uniform(lo, hi) for number in range(n)]
