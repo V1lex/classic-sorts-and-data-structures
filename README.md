@@ -35,6 +35,7 @@ python -m src.main # интерактивный режим
 python -m src.main bubble 3 1 2
 python -m src.main benchmark --runs 10000
 
+pytest # запустить тесты без покрытия
 pytest --cov=src # запустить тесты с покрытием
 ```
 
